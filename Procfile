@@ -1,1 +1,1 @@
-worker: bundle exec rake db:migrate
+rake: bundle exec rake db:migrate
