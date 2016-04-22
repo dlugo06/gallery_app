@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+printf "\n== Migrating database ==\n"
+bundle exec rake db:migrate --trace
