@@ -1,2 +1,2 @@
-web: bundle exec rake db:migrate
+web: ./migration_script
 web: bundle exec rackup config.ru -p $PORT
