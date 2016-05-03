@@ -4,20 +4,21 @@ require 'active_record'
 require_relative 'models/image'
 require_relative 'config/environments'
 
+get '/' do
+  @images = Image.all
+  erb :index
+end
 
 post '/' do
-  Image.create({url: "http://i150.photobucket.com/albums/s85/michelleNpete/BaBas/awesome-beautiful-blue-eyes-cat-cute-Favimcom-110476.jpg", title: "The first magic picture"})
-  @images = Image.all
-  erb :index
+  img_num = rand(0..1084)
+  Image.create(
+    url: "https://unsplash.it/600/500?image=#{img_num}",
+    title: "Image number #{img_num}"
+  )
+  redirect '/'
 end
 
-get "/" do
-  # Image.create({url: "http://placekitten.com/200/300", title: "The first magic picture"})
-  @images = Image.all
-  erb :index
-end
-
-get "/photo/:id" do
-  @images = Image.all
+get '/photo/:id' do
+  @image = Image.find(params[:id])
   erb :single
 end
