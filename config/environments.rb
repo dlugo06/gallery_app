@@ -1,12 +1,4 @@
 configure :production, :development do
-  db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost')
-
-  ActiveRecord::Base.establish_connection(
-    adapter: 'postgresql',
-    host: db.host,
-    username: db.user,
-    password: db.password,
-    database: db.path[1..-1],
-    encoding: 'utf8'
-  )
+  db_options = YAML.load(File.read('./config/database.yml'))
+  ActiveRecord::Base.establish_connection(db_options)
 end
